@@ -20,9 +20,34 @@ import com.easy.mvp.hook.NeedLoginUtils;
  * new date: 2021/7/6
  * version: v 1.0
  */
-public class EasyActivity extends AppCompatActivity {
+public class EasyActivity extends AppCompatActivity implements EasyView {
 
     public void onBackListener(View view) {
         finish();
+    }
+
+    @Override
+    public void showMessage() {
+
+    }
+
+    @Override
+    public void showMessage(String msg) {
+
+    }
+
+    @Override
+    public void showLoadingDialog() {
+
+    }
+
+    @Override
+    public void showLoadingDialog(String msg) {
+
+    }
+
+    @Override
+    public void dismissDialog() {
+
     }
 }

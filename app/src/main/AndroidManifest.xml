@@ -15,6 +15,7 @@
 
         <activity android:name=".business.login.LoginActivity" />
         <activity android:name=".business.set.SetActivity" />
+        <activity android:name=".business.GalleryImageActivity" />
         <activity android:name=".business.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
