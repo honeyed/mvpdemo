@@ -26,6 +26,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.easy.mvp.R;
 import com.easy.mvp.base.EasyActivity;
 import com.easy.mvp.business.login.LoginActivity;
+import com.easy.mvp.common.EasySP;
 import com.easy.mvp.easing.Cubic;
 import com.easy.mvp.easing.Sine;
 
@@ -36,8 +37,6 @@ public class GalleryImageActivity extends EasyActivity implements OnGestureListe
     private ViewPager imagePager;
     private GalleryImageAdapter galleryImageAdapter;
 
-    private SharedPreferences shared;
-    private SharedPreferences.Editor editor;
     private int pager_num;
     int total_page;
     FrameLayout backgroundLayout;
@@ -50,13 +49,10 @@ public class GalleryImageActivity extends EasyActivity implements OnGestureListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        shared = getSharedPreferences("userInfo", 0);
-        editor = shared.edit();
-
         Intent intent = getIntent();
         boolean isHandleShow = intent.getBooleanExtra(IsHandleShow, false);
         //不是首次运行直接跳转
-        boolean isFirstRun = shared.getBoolean("isFirstRun", false);
+        boolean isFirstRun = EasySP.getInstance().getBoolean("isFirstRun", false);
 //        if (!isFirstRun &&  !isHandleShow) {
 //            Intent it = new Intent(this, LoginActivity.class);
 //            startActivity(it);
@@ -128,9 +124,7 @@ public class GalleryImageActivity extends EasyActivity implements OnGestureListe
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
-                editor.putBoolean("isFirstRun", false);
-//                editor.putBoolean("isFirstRun", true);//测试时总是显示向导
-                editor.commit();
+                EasySP.getInstance().putBoolean("isFirstRun", false).apply();//测试时总是显示向导
             }
         }
         return false;

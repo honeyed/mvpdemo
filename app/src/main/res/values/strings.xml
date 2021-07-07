@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">mvpdemo</string>
 
-    <!--向导页面-->
-    <string name="leada_text1">向导a文本1....</string>
-    <string name="leada_text2">向导a文本2....</string>
-    <string name="leadb_text1">向导b文本1....</string>
-    <string name="leadb_text2">向导b文本2....</string>
-    <string name="leadc_text1">向导c文本1....</string>
-    <string name="leadc_text2">向导c文本2....</string>
-    <string name="leadd_text1">向导d文本1....</string>
-    <string name="leadd_text2">向导d文本2....</string>
-    <string name="leade_text1">向导e文本1....</string>
-    <string name="leade_text2">向导e文本2....</string>
+    <!--Guide 页面-->
+    <string name="leada_text1">Guide a text 1....</string>
+    <string name="leada_text2">Guide a text 2....</string>
+    <string name="leadb_text1">Guide b text 1....</string>
+    <string name="leadb_text2">Guide b text 2....</string>
+    <string name="leadc_text1">Guide c text 1....</string>
+    <string name="leadc_text2">Guide c text 2....</string>
+    <string name="leadd_text1">Guide d text 1....</string>
+    <string name="leadd_text2">Guide d text 2....</string>
+    <string name="leade_text1">Guide e text 1....</string>
+    <string name="leade_text2">Guide e text 2....</string>
 </resources>

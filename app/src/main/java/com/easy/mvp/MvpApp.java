@@ -12,13 +12,20 @@ import com.easy.mvp.hook.NeedLoginUtils;
  */
 public class MvpApp extends Application {
 
+    public static MvpApp instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        this.instance = this;
         try {
             NeedLoginUtils.hookInstrumentation();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static MvpApp getInstance() {
+        return instance;
     }
 }
