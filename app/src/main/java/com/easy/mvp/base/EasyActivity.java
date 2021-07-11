@@ -17,7 +17,7 @@ public class EasyActivity extends AppCompatActivity implements EasyView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EVM.getInstance().register(this);
+        EVM.register(this);
     }
 
     public void onBackListener(View view) {
@@ -52,6 +52,6 @@ public class EasyActivity extends AppCompatActivity implements EasyView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EVM.getInstance().unregister(this);
+        EVM.unregister(this);
     }
 }

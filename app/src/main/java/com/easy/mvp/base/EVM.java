@@ -12,16 +12,18 @@ import java.util.Map;
  */
 public class EVM {
 
-    private EVM() {}
-    private Map<String, WeakReference<EasyView>> views = new HashMap<>();
-
-    public void register(EasyView easyView) {
-        managerView(easyView, true);
+    private EVM() {
     }
 
-    public <T extends EasyView> T get(Class<T> clazz) {
+    private Map<String, WeakReference<EasyView>> views = new HashMap<>();
+
+    public static void register(EasyView easyView) {
+        EVM.ins().managerView(easyView, true);
+    }
+
+    private <T extends EasyView> T getView(Class<T> clazz) {
         EasyView easyView = views.get(clazz.getSimpleName()).get();
-        if(easyView == null) {
+        if (easyView == null) {
             try {
                 return clazz.newInstance();
             } catch (IllegalAccessException e) {
@@ -33,16 +35,20 @@ public class EVM {
         return (T) easyView;
     }
 
-    public void unregister(EasyView easyView) {
-        managerView(easyView, false);
+    public static <T extends EasyView> T get(Class<T> clazz) {
+        return EVM.ins().getView(clazz);
     }
 
-    private void managerView(EasyView easyView, boolean b) {
+    public static void unregister(EasyView easyView) {
+        EVM.ins().managerView(easyView, false);
+    }
+
+    private void managerView(EasyView easyView, boolean registerOrNot) {
         Class[] classes = easyView.getClass().getInterfaces();
         for (Class clazz : classes) {
             if (clazz.isAssignableFrom(EasyView.class)) {
-                if(b) {
-                    views.put(clazz.getSimpleName(),new WeakReference<EasyView>(easyView));
+                if (registerOrNot) {
+                    views.put(clazz.getSimpleName(), new WeakReference<>(easyView));
                 } else {
                     views.remove(clazz.getSimpleName());
                 }
@@ -54,7 +60,7 @@ public class EVM {
         private static EVM easyPresent = new EVM();
     }
 
-    public static EVM ins() {
+    private static EVM ins() {
         return InnerClass.easyPresent;
     }
 }

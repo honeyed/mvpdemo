@@ -15,14 +15,14 @@ public class LoginPresent implements LoginContract.Presenter {
 
     @Override
     public void doLogin(String userName, String password) {
-        LoginContract.LoginView loginView = EVM.ins().get(LoginContract.LoginView.class);
-        EVM.ins().get(LoginContract.LoginView.class).showLoadingDialog();
+        LoginContract.LoginView loginView = EVM.get(LoginContract.LoginView.class);
+        EVM.get(LoginContract.LoginView.class).showLoadingDialog();
         User user = loginModel.doUser(userName, password);
         loginView.dismissDialog();
         if(user.isLoginState()) {
-            EVM.ins().get(LoginContract.LoginView.class).loginSuccess(user);
+            EVM.get(LoginContract.LoginView.class).loginSuccess(user);
         } else {
-            loginView.loginFailed(user.getFailureStatus(),"用户密码不对");
+            EVM.get(LoginContract.LoginView.class).loginFailed(user.getFailureStatus(),"用户密码不对");
         }
     }
 

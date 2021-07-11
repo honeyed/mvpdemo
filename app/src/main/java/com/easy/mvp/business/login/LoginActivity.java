@@ -21,7 +21,7 @@ import com.easy.mvp.business.main.MainActivity;
  */
 public class LoginActivity extends EasyActivity implements LoginContract.LoginView {
 
-    private EditText userName,passWord;
+    private EditText userName, passWord;
     private LoginPresent loginPresent;
 
     @Override
