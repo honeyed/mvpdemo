@@ -12,4 +12,10 @@
     <string name="leadd_text2">Guide d text 2....</string>
     <string name="leade_text1">Guide e text 1....</string>
     <string name="leade_text2">Guide e text 2....</string>
+
+    <string name="main_one">发现</string>
+    <string name="main_two">视频</string>
+    <string name="main_three">我的</string>
+    <string name="main_four">朋友</string>
+    <string name="main_five">账号</string>
 </resources>

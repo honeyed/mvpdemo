@@ -15,10 +15,9 @@ public class LoginPresent implements LoginContract.Presenter {
 
     @Override
     public void doLogin(String userName, String password) {
-        LoginContract.LoginView loginView = EVM.get(LoginContract.LoginView.class);
         EVM.get(LoginContract.LoginView.class).showLoadingDialog();
         User user = loginModel.doUser(userName, password);
-        loginView.dismissDialog();
+        EVM.get(LoginContract.LoginView.class).dismissDialog();
         if(user.isLoginState()) {
             EVM.get(LoginContract.LoginView.class).loginSuccess(user);
         } else {

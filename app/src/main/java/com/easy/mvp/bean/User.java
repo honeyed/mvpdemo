@@ -8,7 +8,7 @@ package com.easy.mvp.bean;
  */
 public class User {
 
-    private boolean loginState = true;//0成功 1失败
+    private boolean loginState = false;//0成功 1失败
     private int failureStatus = 3;
 
     public boolean isLoginState() {

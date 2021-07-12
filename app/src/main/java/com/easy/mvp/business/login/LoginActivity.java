@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.easy.mvp.R;
+import com.easy.mvp.base.EVM;
 import com.easy.mvp.base.EasyActivity;
 import com.easy.mvp.bean.User;
 import com.easy.mvp.business.main.MainActivity;
@@ -22,13 +23,11 @@ import com.easy.mvp.business.main.MainActivity;
 public class LoginActivity extends EasyActivity implements LoginContract.LoginView {
 
     private EditText userName, passWord;
-    private LoginPresent loginPresent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginPresent = new LoginPresent();//创建LoginPresent
         userName = findViewById(R.id.userName);
         passWord = findViewById(R.id.passWord);
     }
@@ -36,7 +35,7 @@ public class LoginActivity extends EasyActivity implements LoginContract.LoginVi
     public void doLogin(View view) {
         String password = passWord.getText().toString();
         String username = userName.getText().toString();
-        loginPresent.doLogin(username, password);
+        EVM.getPresent(LoginPresent.class).doLogin(username, password);
     }
 
     @Override
