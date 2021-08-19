@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.easy.mvp.business.main.MainActivity;
 public class LoginActivity extends EasyActivity implements LoginContract.LoginView {
 
     private EditText userName, passWord;
+    ImageView imageView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class LoginActivity extends EasyActivity implements LoginContract.LoginVi
         setContentView(R.layout.activity_login);
         userName = findViewById(R.id.userName);
         passWord = findViewById(R.id.passWord);
+
     }
 
     public void doLogin(View view) {

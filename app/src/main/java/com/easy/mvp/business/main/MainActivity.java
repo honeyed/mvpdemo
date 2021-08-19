@@ -5,10 +5,13 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.easy.mvp.R;
 import com.easy.mvp.base.EasyActivity;
 import com.easy.mvp.base.EasyFragment;
 import com.easy.mvp.base.IBackHandledInterface;
+
+import retrofit2.Retrofit;
 
 public class MainActivity extends EasyActivity implements IBackHandledInterface {
 
@@ -19,6 +22,7 @@ public class MainActivity extends EasyActivity implements IBackHandledInterface 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //创建Retrofit实例
     }
 
     @Override

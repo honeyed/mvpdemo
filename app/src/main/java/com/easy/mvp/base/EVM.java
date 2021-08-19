@@ -17,7 +17,7 @@ public class EVM {
     private EVM() {
     }
 
-    private Map<String, WeakReference<EasyView>> views = new HashMap<>();
+    private Map<String, EasyView> views = new HashMap<>();
     private Map<String, EasyPresent> presents = new HashMap<>();
 
     public static void register(EasyView easyView) {
@@ -25,7 +25,7 @@ public class EVM {
     }
 
     private <T extends EasyView> T getView(Class<T> clazz) {
-        EasyView easyView = views.get(clazz.getSimpleName()).get();
+        EasyView easyView = views.get(clazz.getSimpleName());
         if (easyView == null) {
             try {
                 return clazz.newInstance();
@@ -70,7 +70,7 @@ public class EVM {
         for (Class clazz : classes) {
             if (EasyView.class.isAssignableFrom(clazz)) {
                 if (registerOrNot) {
-                    views.put(clazz.getSimpleName(), new WeakReference<>(easyView));
+                    views.put(clazz.getSimpleName(), easyView);
                 } else {
                     views.remove(clazz.getSimpleName());
                 }

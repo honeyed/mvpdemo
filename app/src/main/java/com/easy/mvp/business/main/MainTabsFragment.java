@@ -24,16 +24,16 @@ import com.easy.mvp.R;
 
 public class MainTabsFragment extends Fragment {
 
-    public int discoverResourceNormal = R.mipmap.cm4_btm_icn_discovery;
-    public int discoverResourcePre = R.mipmap.cm4_btm_icn_discovery_prs;
-    public int videoResourceNormal = R.mipmap.cm4_btm_icn_video;
-    public int videoResourcePre = R.mipmap.cm4_btm_icn_video_prs;
-    public int musicResourceNormal = R.mipmap.cm4_btm_icn_music;
-    public int musicResourcePre = R.mipmap.cm4_btm_icn_music_prs;
-    public int friendResourceNormal = R.mipmap.cm4_btm_icn_friend;
-    public int friendResourcePre = R.mipmap.cm4_btm_icn_friend_prs;
-    public int accountResourceNormal = R.mipmap.cm4_btm_icn_account;
-    public int accountResourcePre = R.mipmap.cm4_btm_icn_account_prs;
+    public int discoverResourceNormal = R.mipmap.ic_launcher;
+    public int discoverResourcePre = R.mipmap.ic_launcher;
+    public int videoResourceNormal = R.mipmap.ic_launcher;
+    public int videoResourcePre = R.mipmap.ic_launcher;
+    public int musicResourceNormal = R.mipmap.ic_launcher;
+    public int musicResourcePre = R.mipmap.ic_launcher;
+    public int friendResourceNormal = R.mipmap.ic_launcher;
+    public int friendResourcePre = R.mipmap.ic_launcher;
+    public int accountResourceNormal = R.mipmap.ic_launcher;
+    public int accountResourcePre = R.mipmap.ic_launcher;
 
     public String centerText = "";
 
