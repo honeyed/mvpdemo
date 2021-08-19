@@ -4,6 +4,12 @@ import com.easy.mvp.base.EasyPresent;
 import com.easy.mvp.base.EasyView;
 import com.easy.mvp.bean.User;
 
+/**
+ * description:
+ * author: easy
+ * new date: 2021/7/6
+ * version: v 1.0
+ */
 public interface LoginContract {
 
     interface Presenter extends EasyPresent {

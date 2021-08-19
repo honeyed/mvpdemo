@@ -6,7 +6,7 @@ import com.easy.mvp.hook.NeedLoginUtils;
 
 /**
  * description:
- * author: tianhonglong
+ * author: easy
  * new date: 2021/7/6
  * version: v 1.0
  */
@@ -18,11 +18,6 @@ public class MvpApp extends Application {
     public void onCreate() {
         super.onCreate();
         this.instance = this;
-        try {
-            NeedLoginUtils.hookInstrumentation();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static MvpApp getInstance() {

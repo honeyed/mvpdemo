@@ -2,6 +2,11 @@ package com.easy.mvp.business.login;
 
 import com.easy.mvp.base.EVM;
 import com.easy.mvp.bean.User;
+import com.easy.mvp.net.RetrofitInitialization;
+import com.easy.mvp.net.RetrofitPresent;
+
+import retrofit2.Call;
+import rx.Observable;
 
 /**
  * description:
@@ -9,19 +14,19 @@ import com.easy.mvp.bean.User;
  * new date: 2021/7/9
  * version: v 1.0
  */
-public class LoginPresent implements LoginContract.Presenter {
+public class LoginPresent extends RetrofitPresent implements LoginContract.Presenter {
 
-    private LoginModel loginModel = new LoginModel();
+    private LoginModel loginModel = RetrofitInitialization.get().create(LoginModel.class);
 
     @Override
     public void doLogin(String userName, String password) {
-        EVM.get(LoginContract.LoginView.class).showLoadingDialog();
-        User user = loginModel.doUser(userName, password);
-        EVM.get(LoginContract.LoginView.class).dismissDialog();
-        if(user.isLoginState()) {
-            EVM.get(LoginContract.LoginView.class).loginSuccess(user);
+        EVM.getV(LoginContract.LoginView.class).showLoadingDialog();
+        User user = loginModel.doLogin(userName, password);
+        EVM.getV(LoginContract.LoginView.class).dismissDialog();
+        if (user.isLoginState()) {
+            EVM.getV(LoginContract.LoginView.class).loginSuccess(user);
         } else {
-            EVM.get(LoginContract.LoginView.class).loginFailed(user.getFailureStatus(),"用户密码不对");
+            EVM.getV(LoginContract.LoginView.class).loginFailed(user.getFailureStatus(), "用户密码不对");
         }
     }
 

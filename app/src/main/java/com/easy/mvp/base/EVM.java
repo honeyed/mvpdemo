@@ -20,10 +20,6 @@ public class EVM {
     private Map<String, EasyView> views = new HashMap<>();
     private Map<String, EasyPresent> presents = new HashMap<>();
 
-    public static void register(EasyView easyView) {
-        EVM.ins().managerView(easyView, true);
-    }
-
     private <T extends EasyView> T getView(Class<T> clazz) {
         EasyView easyView = views.get(clazz.getSimpleName());
         if (easyView == null) {
@@ -42,8 +38,9 @@ public class EVM {
         EasyPresent present = presents.get(clazz.getSimpleName());
         if (present == null) {
             try {
-                present = clazz.newInstance();
-                return clazz.newInstance();
+                T t = clazz.newInstance();
+                presents.put(clazz.getSimpleName(), t);
+                return t;
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InstantiationException e) {
@@ -51,18 +48,6 @@ public class EVM {
             }
         }
         return (T) present;
-    }
-
-    public static <T extends EasyView> T get(Class<T> clazz) {
-        return EVM.ins().getView(clazz);
-    }
-
-    public static <T extends EasyPresent> T getPresent(Class<T> clazz) {
-        return EVM.ins().getPre(clazz);
-    }
-
-    public static void unregister(EasyView easyView) {
-        EVM.ins().managerView(easyView, false);
     }
 
     private void managerView(EasyView easyView, boolean registerOrNot) {
@@ -76,6 +61,22 @@ public class EVM {
                 }
             }
         }
+    }
+
+    public static void register(EasyView easyView) {
+        EVM.ins().managerView(easyView, true);
+    }
+
+    public static void unregister(EasyView easyView) {
+        EVM.ins().managerView(easyView, false);
+    }
+
+    public static <T extends EasyView> T getV(Class<T> clazz) {
+        return EVM.ins().getView(clazz);
+    }
+
+    public static <T extends EasyPresent> T getP(Class<T> clazz) {
+        return EVM.ins().getPre(clazz);
     }
 
     private static class InnerClass {

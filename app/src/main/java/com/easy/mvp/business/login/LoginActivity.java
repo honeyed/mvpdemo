@@ -38,7 +38,7 @@ public class LoginActivity extends EasyActivity implements LoginContract.LoginVi
     public void doLogin(View view) {
         String password = passWord.getText().toString();
         String username = userName.getText().toString();
-        EVM.getPresent(LoginPresent.class).doLogin(username, password);
+        EVM.getP(LoginPresent.class).doLogin(username, password);
     }
 
     @Override

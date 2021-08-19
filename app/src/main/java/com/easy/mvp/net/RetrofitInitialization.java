@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.internal.platform.Platform;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -21,7 +22,8 @@ public class RetrofitInitialization {
 
     private OkHttpClient okHttpClient;
     private Retrofit retrofit;
-    public   LoggingInterceptor interceptor = new LoggingInterceptor.Builder()
+
+    public LoggingInterceptor interceptor = new LoggingInterceptor.Builder()
             .loggable(BuildConfig.DEBUG)
             .setLevel(Level.BASIC)
             .log(Platform.INFO)
@@ -30,11 +32,12 @@ public class RetrofitInitialization {
             .build();
 
     private RetrofitInitialization() {
-        retrofit = new  Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl("")
                 .client(getOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(DirectCallAdapterFactory.create())
                 .build();
     }
 
@@ -47,5 +50,13 @@ public class RetrofitInitialization {
                     .build();
         }
         return okHttpClient;
+    }
+
+    public static class InnerRetrofitInitialization {
+        private static RetrofitInitialization retrofitInitialization =  new RetrofitInitialization();
+    }
+
+    public static Retrofit get() {
+        return InnerRetrofitInitialization.retrofitInitialization.retrofit;
     }
 }
