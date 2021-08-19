@@ -21,7 +21,7 @@ public class RetrofitInitialization {
 
     private OkHttpClient okHttpClient;
     private Retrofit retrofit;
-    public LoggingInterceptor interceptor = new LoggingInterceptor.Builder()
+    public   LoggingInterceptor interceptor = new LoggingInterceptor.Builder()
             .loggable(BuildConfig.DEBUG)
             .setLevel(Level.BASIC)
             .log(Platform.INFO)
