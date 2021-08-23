@@ -1,7 +1,12 @@
 package com.easy.mvp.net;
 
+import com.easy.mvp.base.EasyData;
+import com.easy.mvp.bean.User;
+
 import retrofit2.Call;
 import retrofit2.CallAdapter;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
@@ -35,6 +40,19 @@ public class DirectCallAdapterFactory extends CallAdapter.Factory {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+//                call.enqueue(new Callback<Object>() {
+//                    @Override
+//                    public void onResponse(Call<Object> call, Response<Object> response) {
+//                        EasyData<User> data = (EasyData<User>) response.body();
+//                        System.out.println(data.getMsg()+data.getData().getClass().getSimpleName());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Object> call, Throwable t) {
+//
+//                    }
+//                });
                 return null;
             }
         };

@@ -1,5 +1,6 @@
 package com.easy.mvp.business.login;
 
+import com.easy.mvp.base.EasyData;
 import com.easy.mvp.bean.User;
 
 import retrofit2.Call;
@@ -16,5 +17,5 @@ import rx.Observable;
 public interface LoginModel {
 
     @POST("login")
-    User doLogin(@Query("username") String username, @Query("password") String password);
+    EasyData<User> doLogin(@Query("username") String username, @Query("password") String password);
 }

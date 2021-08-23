@@ -23,20 +23,20 @@ public class RetrofitInitialization {
     private OkHttpClient okHttpClient;
     private Retrofit retrofit;
 
-    public LoggingInterceptor interceptor = new LoggingInterceptor.Builder()
-            .loggable(BuildConfig.DEBUG)
-            .setLevel(Level.BASIC)
-            .log(Platform.INFO)
-            .request("request")
-            .response("response")
-            .build();
+//    public LoggingInterceptor interceptor = new LoggingInterceptor.Builder()
+//            .loggable(BuildConfig.DEBUG)
+//            .setLevel(Level.BASIC)
+//            .log(Platform.INFO)
+//            .request("request")
+//            .response("response")
+//            .build();
 
     private RetrofitInitialization() {
-        retrofit = new Retrofit.Builder()
-                .baseUrl("")
+            retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.35.238:12581/")
                 .client(getOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addCallAdapterFactory(DirectCallAdapterFactory.create())
                 .build();
     }
@@ -45,7 +45,7 @@ public class RetrofitInitialization {
         if (okHttpClient == null) {
             okHttpClient = new OkHttpClient.Builder()
                     .retryOnConnectionFailure(true)
-                    .addInterceptor(interceptor)
+//                    .addInterceptor(interceptor)
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .build();
         }
