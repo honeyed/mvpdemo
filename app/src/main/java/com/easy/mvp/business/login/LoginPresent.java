@@ -40,7 +40,7 @@ public class LoginPresent implements LoginContract.Presenter {
             @Override
             public void OnMessageResponse(EasyData<User> user) {
                 if (user.getData().isLoginState()) {
-                    EVM.getV(LoginContract.LoginView.class).loginSuccess(user.getData());
+                    EVM.getV(LoginContract.LoginView.class).loginSuccess(user.getData());//加点测试
                 } else {
                     EVM.getV(LoginContract.LoginView.class).loginFailed(user.getData().getFailureStatus(), "用户密码不对");
                 }
