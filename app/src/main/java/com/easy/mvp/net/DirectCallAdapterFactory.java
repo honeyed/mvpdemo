@@ -36,8 +36,11 @@ public class DirectCallAdapterFactory extends CallAdapter.Factory {
             public Object adapt(Call<Object> call) {
                 // todo 可以在这里判断接口数据格式
                 try {
+                    Thread.sleep(30*1000);
                     return call.execute().body();
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 

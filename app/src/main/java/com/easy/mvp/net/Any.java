@@ -6,6 +6,13 @@ import android.os.Message;
 
 import androidx.annotation.NonNull;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 /**
  * description:
  * author: tianhonglong
@@ -15,19 +22,19 @@ import androidx.annotation.NonNull;
 public class Any {
 
     public static void asyncTask (AsyncTask asyncTask) {
-        new Thread(new Runnable() {
+        cachedThreadPool.execute(new Runnable() {
             @Override
             public void run() {
                 Object o = asyncTask.execute();
-                handler.sendEmptyMessage(1);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        asyncTask.OnMessageResponse(o);
+                        if (o != null)
+                            asyncTask.OnMessageResponse(o);
                     }
                 });
             }
-        }).start();
+        });
     }
 
 
@@ -42,4 +49,8 @@ public class Any {
             super.handleMessage(msg);
         }
     };
+
+    // 创建数组型缓冲等待队列
+    private static BlockingQueue<Runnable> bq = new ArrayBlockingQueue<Runnable>(100);
+    private static ThreadPoolExecutor cachedThreadPool = new ThreadPoolExecutor(4, 6, 60, TimeUnit.SECONDS, bq);
 }
